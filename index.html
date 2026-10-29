@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kevin Mackay</title>
+  <meta name="description" content="Kevin Mackay, Senior Software Engineer at BBC Research & Development.">
+  <meta name="theme-color" content="#070b17">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <style>
+    @font-face {
+      font-family: "Inter";
+      src: url("assets/fonts/inter-latin.woff2") format("woff2");
+      font-weight: 100 900;
+      font-display: swap;
+    }
+
+    :root {
+      --bg: #070b17;
+      --bg-2: #0b1224;
+      --line: #1d2a4a;
+      --text: #dbe1ee;
+      --muted: #8f9ab3;
+      --sans: "Inter", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", Meiryo, "Noto Sans CJK JP", system-ui, sans-serif;
+      --gutter: max(16px, calc((100% - 1080px) / 2));
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font: 400 16px/1.65 var(--sans);
+      background:
+        radial-gradient(1200px 700px at 78% 8%, rgba(255, 138, 61, 0.08), transparent 60%),
+        radial-gradient(900px 600px at 10% 40%, rgba(60, 90, 170, 0.14), transparent 60%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 50%, var(--bg) 100%);
+      background-attachment: fixed;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Scoped to main so the toggle always shows both languages. */
+    :root[data-lang="en"] main [lang="ja"],
+    :root[data-lang="ja"] main [lang="en"] { display: none !important; }
+
+    a { color: inherit; text-decoration: none; }
+
+    #embers {
+      position: fixed; inset: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 0;
+    }
+
+    .site-header, main { position: relative; z-index: 1; }
+
+    .site-header {
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 18px var(--gutter);
+    }
+    .brand { font-weight: 600; font-size: 17px; }
+
+    .lang-toggle { display: flex; gap: 14px; }
+    .lang-toggle button {
+      font: inherit; font-size: 14px; color: var(--muted);
+      background: none; border: 0; padding: 4px 0; cursor: pointer;
+    }
+    /* data-lang, not aria-pressed, so it's right before main.js runs. */
+    .lang-toggle button:hover,
+    :root[data-lang="en"] [data-set-lang="en"],
+    :root[data-lang="ja"] [data-set-lang="ja"] { color: var(--text); }
+
+    main { padding: 0 var(--gutter); }
+  </style>
+  <script>
+    // Pick language before first paint: ?lang= > saved choice > browser preference.
+    (function () {
+      var lang = new URLSearchParams(location.search).get('lang');
+      try { lang = lang || localStorage.getItem('lang'); } catch (e) {}
+      if (!lang) lang = (navigator.languages || [navigator.language]).some(function (l) { return /^ja/i.test(l); }) ? 'ja' : 'en';
+      if (lang !== 'ja') lang = 'en';
+      document.documentElement.lang = lang;
+      document.documentElement.dataset.lang = lang;
+    })();
+  </script>
+</head>
+<body>
+  <canvas id="embers" aria-hidden="true"></canvas>
+
+  <header class="site-header">
+    <a class="brand" href="./">Kevin Mackay</a>
+    <div class="lang-toggle" role="group" aria-label="Language / 言語">
+      <button type="button" data-set-lang="en" lang="en">English</button>
+      <button type="button" data-set-lang="ja" lang="ja">日本語</button>
+    </div>
+  </header>
+
+  <main></main>
+
+  <script src="assets/main.js" defer></script>
+</body>
+</html>
