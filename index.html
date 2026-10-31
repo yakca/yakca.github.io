@@ -8,70 +8,7 @@
   <meta name="theme-color" content="#070b17">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <style>
-    @font-face {
-      font-family: "Inter";
-      src: url("assets/fonts/inter-latin.woff2") format("woff2");
-      font-weight: 100 900;
-      font-display: swap;
-    }
-
-    :root {
-      --bg: #070b17;
-      --bg-2: #0b1224;
-      --line: #1d2a4a;
-      --text: #dbe1ee;
-      --muted: #8f9ab3;
-      --sans: "Inter", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic UI", Meiryo, "Noto Sans CJK JP", system-ui, sans-serif;
-      --gutter: max(16px, calc((100% - 1080px) / 2));
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      color: var(--text);
-      font: 400 16px/1.65 var(--sans);
-      background:
-        radial-gradient(1200px 700px at 78% 8%, rgba(255, 138, 61, 0.08), transparent 60%),
-        radial-gradient(900px 600px at 10% 40%, rgba(60, 90, 170, 0.14), transparent 60%),
-        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 50%, var(--bg) 100%);
-      background-attachment: fixed;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    /* Scoped to main so the toggle always shows both languages. */
-    :root[data-lang="en"] main [lang="ja"],
-    :root[data-lang="ja"] main [lang="en"] { display: none !important; }
-
-    a { color: inherit; text-decoration: none; }
-
-    #embers {
-      position: fixed; inset: 0; width: 100%; height: 100%;
-      pointer-events: none; z-index: 0;
-    }
-
-    .site-header, main { position: relative; z-index: 1; }
-
-    .site-header {
-      display: flex; align-items: center; justify-content: space-between; gap: 16px;
-      padding: 18px var(--gutter);
-    }
-    .brand { font-weight: 600; font-size: 17px; }
-
-    .lang-toggle { display: flex; gap: 14px; }
-    .lang-toggle button {
-      font: inherit; font-size: 14px; color: var(--muted);
-      background: none; border: 0; padding: 4px 0; cursor: pointer;
-    }
-    /* data-lang, not aria-pressed, so it's right before main.js runs. */
-    .lang-toggle button:hover,
-    :root[data-lang="en"] [data-set-lang="en"],
-    :root[data-lang="ja"] [data-set-lang="ja"] { color: var(--text); }
-
-    main { padding: 0 var(--gutter); }
-  </style>
+  <link rel="stylesheet" href="assets/style.css">
   <script>
     // Pick language before first paint: ?lang= > saved choice > browser preference.
     (function () {
@@ -95,7 +32,35 @@
     </div>
   </header>
 
-  <main></main>
+  <main>
+    <section class="intro">
+      <h1 lang="en">Senior Software Engineer at BBC Research &amp; Development.</h1>
+      <h1 lang="ja"><span class="nowrap">BBC R&amp;D（研究開発部門）の</span>シニアソフトウェア<wbr>エンジニア。</h1>
+      <p lang="en">I lead engineering on experiences and web tools for live media, and design the infrastructure behind them.</p>
+      <p lang="ja">ライブメディアのための体験やウェブツールの開発をリードし、それを支えるインフラを設計しています。</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="campfire">
+      <svg class="bonfire" viewBox="0 0 32 32" aria-hidden="true">
+        <g stroke-linecap="round" stroke-width="3.2">
+          <path d="M7 23.5 25 28.5" stroke="#7d4526"/>
+          <path d="M7 28.5 25 23.5" stroke="#9a5a32"/>
+        </g>
+        <g class="flame">
+          <path fill="#d24619" d="M16 3c1.5 4.5 7.5 7.5 7.5 14.5 0 4.5-3.5 7.5-7.5 7.5s-7.5-3-7.5-7.5c0-4 2.5-6 3.5-9 1 2 1.5 3 2.5 3.5 0-3.5.5-6.5 1.5-9z"/>
+          <path fill="#ff8a3d" d="M16 9c1 3 5 5 5 9.5 0 3.5-2.2 5.5-5 5.5s-5-2-5-5.5c0-2.5 1.5-4 2.5-5.5.5 1.5 1 2 1.5 2.5 0-2.5.4-4.5 1-6.5z"/>
+          <path class="flame core" fill="#ffd27a" d="M16 15c1 2 3 3.5 3 5.5s-1.3 3.5-3 3.5-3-1.5-3-3.5c0-1.5 1-2.5 1.8-3.5.4-.5.9-1.2 1.2-2z"/>
+        </g>
+      </svg>
+      <p class="bonfire-lit">Bonfire lit</p>
+    </div>
+    <p class="links">
+      <a href="https://github.com/yakca">GitHub</a>
+      <a href="https://www.linkedin.com/in/yakca">LinkedIn</a>
+    </p>
+  </footer>
 
   <script src="assets/main.js" defer></script>
 </body>
