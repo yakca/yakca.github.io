@@ -8,6 +8,7 @@
 :root {
   --bg: #070b17;
   --bg-2: #0b1224;
+  --line: #1d2a4a;
   --text: #dbe1ee;
   --muted: #8f9ab3;
   --ember-rgb: 255 138 61;
@@ -65,12 +66,27 @@ a { color: inherit; text-decoration: none; }
 
 main { flex: 1; padding: 0 var(--gutter); }
 
-h1, p { margin: 0; }
+h1, h2, h3, p { margin: 0; }
 
-.intro { padding: clamp(56px, 14vh, 140px) 0 clamp(48px, 10vh, 112px); max-width: 34em; text-wrap: balance; }
+.intro { padding: clamp(56px, 14vh, 140px) 0 clamp(48px, 10vh, 112px); max-width: 38em; text-wrap: balance; }
 .intro h1 { font-size: clamp(22px, 3vw, 28px); font-weight: 500; line-height: 1.4; }
-.intro p { margin-top: 12px; font-size: 18px; color: var(--muted); }
+.intro p { margin-top: 12px; font-size: 18px; color: var(--muted); text-wrap: wrap; }
+.clause { display: inline-block; }
 .nowrap { white-space: nowrap; }
+
+.work { padding: 40px 0 48px; border-top: 1px solid var(--line); }
+h2 { margin-bottom: 24px; font-size: 14px; font-weight: 500; color: var(--muted); }
+h3 { font-size: 16px; font-weight: 600; }
+.when { margin-left: 8px; font-size: 14px; font-weight: 400; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.project { max-width: 760px; }
+.project p { margin-top: 4px; color: var(--muted); text-wrap: pretty; }
+.shot {
+  display: block; width: 100%; height: auto; margin-bottom: 16px; border-radius: 6px;
+  background: var(--bg-2); box-shadow: 0 0 0 1px var(--line);
+  filter: brightness(0.85); transition: filter 0.3s;
+}
+.shot:hover { filter: none; }
 
 .site-footer { padding: 72px var(--gutter) 40px; text-align: center; font-size: 14px; color: var(--muted); }
 .site-footer a:hover { color: var(--text); }

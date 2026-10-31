@@ -3,12 +3,17 @@
 
   var root = document.documentElement;
   var langButtons = document.querySelectorAll('[data-set-lang]');
+  var altImages = document.querySelectorAll('img[data-alt-ja]');
+  altImages.forEach(function (img) { img.dataset.altEn = img.alt; });
 
   function setLang(lang) {
     root.lang = lang;
     root.dataset.lang = lang;
     langButtons.forEach(function (b) {
       b.setAttribute('aria-pressed', String(b.dataset.setLang === lang));
+    });
+    altImages.forEach(function (img) {
+      img.alt = lang === 'ja' ? img.dataset.altJa : img.dataset.altEn;
     });
   }
   langButtons.forEach(function (b) {
